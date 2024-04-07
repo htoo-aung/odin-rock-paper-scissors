@@ -7,21 +7,21 @@ let ties = 0;
  */
 function playGame() {
     for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt("Choose: Rock, Paper, or Scissors");
+        let playerSelection = prompt("Choose: Rock, Paper, or Scissors").toLowerCase();
         let computerSelection = getComputerChoice();
         let results = playRound(playerSelection, computerSelection);
 
         if (results === 'win') {
             playerWins++;
-            console.log(`You win! ${playerSelection.toLowerCase()} beats ${computerSelection}`);
+            console.log(`You win! ${playerSelection} beats ${computerSelection}`);
         }
         else if (results === "lose") {
             computerWins++;
-            console.log(`You lose! ${computerSelection} beats ${playerSelection.toLowerCase()}`);
+            console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
         }
         else {
             ties++;
-            console.log(`It's a tie! You both chose ${playerSelection.toLowerCase()}`);
+            console.log(`It's a tie! You both chose ${playerSelection}`);
         }
     }
 
