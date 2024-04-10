@@ -5,28 +5,28 @@ let ties = 0;
 /**
  * Plays a game of rock, paper, scissors.
  */
-function playGame() {
-    for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt("Choose: Rock, Paper, or Scissors").toLowerCase();
-        let computerSelection = getComputerChoice();
-        let results = playRound(playerSelection, computerSelection);
+// function playGame() {
+//     for (let i = 0; i < 5; i++) {
+//         let playerSelection = prompt("Choose: Rock, Paper, or Scissors").toLowerCase();
+//         let computerSelection = getComputerChoice();
+//         let results = playRound(playerSelection, computerSelection);
 
-        if (results === 'win') {
-            playerWins++;
-            console.log(`You win! ${playerSelection} beats ${computerSelection}`);
-        }
-        else if (results === "lose") {
-            computerWins++;
-            console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
-        }
-        else {
-            ties++;
-            console.log(`It's a tie! You both chose ${playerSelection}`);
-        }
-    }
+//         if (results === 'win') {
+//             playerWins++;
+//             console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+//         }
+//         else if (results === "lose") {
+//             computerWins++;
+//             console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+//         }
+//         else {
+//             ties++;
+//             console.log(`It's a tie! You both chose ${playerSelection}`);
+//         }
+//     }
 
-    decideWinner();
-}
+//     decideWinner();
+// }
 
 /**
  * Plays a round of rock, paper, scissors.
