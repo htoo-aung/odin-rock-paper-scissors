@@ -1,3 +1,4 @@
+let roundsPlayed = 0;
 let playerWins = 0;
 let computerWins = 0;
 let ties = 0;
@@ -8,26 +9,31 @@ const roundOutcome = document.querySelector('#round-outcome');
 const round = document.querySelector('#round');
 const gameOutcome = document.querySelector('#game-outcome')
 
+// Stat display
 const playerChoice = document.querySelector('#player-choice');
 const playerScore = document.querySelector('#player-score');
 const computerChoice = document.querySelector('#comp-choice');
 const computerScore = document.querySelector('#comp-score');
 
 
-const results = userChoiceBtns.forEach((button) => {
+userChoiceBtns.forEach((button) => {
     button.addEventListener("click", () => {
         const pChoice = button.textContent.toLowerCase();
+        roundsPlayed++;
 
         playerChoice.textContent = button.textContent;
+        round.textContent = roundsPlayed.toString();
 
-        return playRound(pChoice, getComputerChoice());
+        const results = playRound(pChoice, getComputerChoice());
+
+        playGame(results);
     });
 });
 
 /**
  * Plays a game of rock, paper, scissors.
  */
-function playGame() {
+function playGame(results) {
     if (results === 'win') {
         playerWins++;
         roundOutcome.textContent = `You win! ${playerChoice.textContent} beats ${computerChoice.textContent}`;
@@ -92,15 +98,18 @@ function getComputerChoice() {
  */
 function decideWinner() {
 
-    if (playerWins > computerWins) {
-        gameOutcome.textContent = 'You win!';
-    }
-    else if (computerWins > playerWins) {
-        gameOutcome.textContent = 'You lose :(';
+    if (roundsPlayed != 5) {
+        gameOutcome.textContent = 'Start';
     }
     else {
-        gameOutcome.textContent = 'Tie.';
+        if (playerWins > computerWins) {
+            gameOutcome.textContent = 'You win!';
+        }
+        else if (computerWins > playerWins) {
+            gameOutcome.textContent = 'You lose :(';
+        }
+        else {
+            gameOutcome.textContent = 'Tie.';
+        }
     }
 }
-
-playGame();
