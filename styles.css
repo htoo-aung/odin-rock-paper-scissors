@@ -1,5 +1,11 @@
 body {
     height: 100vh;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;   
 }
 
 #wrapper {
@@ -18,7 +24,16 @@ body {
     height: 35%;
 }
 
-.container {
+#game-header {
     display: flex;
-    justify-content: space-around;   
+    flex-direction: column;
+}
+
+#game-stats {
+    display: flex;
+    justify-content: space-between;
+}
+
+#round-outcome {
+    text-align: center;
 }

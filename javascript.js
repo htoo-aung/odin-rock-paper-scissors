@@ -2,31 +2,42 @@ let playerWins = 0;
 let computerWins = 0;
 let ties = 0;
 
+const userChoiceBtns = document.querySelectorAll('.btn-choice');
+
+const roundOutcome = document.querySelector('#round-outcome');
+const roundStatus = document.querySelector('#round-status');
+const playerChoice = document.querySelector('#player-choice');
+const computerChoice = document.querySelector('#comp-choice');
+
 /**
  * Plays a game of rock, paper, scissors.
  */
-// function playGame() {
-//     for (let i = 0; i < 5; i++) {
-//         let playerSelection = prompt("Choose: Rock, Paper, or Scissors").toLowerCase();
-//         let computerSelection = getComputerChoice();
-//         let results = playRound(playerSelection, computerSelection);
+function playGame() {
+    for (let i = 0; i < 5; i++) {
+        let results = userChoiceBtns.forEach((button) => {
+            button.addEventListener("click", () => {
+                const pChoice = button.textContent.toLowerCase();
+        
+                return playRound(pChoice, getComputerChoice());
+            });
+        });
 
-//         if (results === 'win') {
-//             playerWins++;
-//             console.log(`You win! ${playerSelection} beats ${computerSelection}`);
-//         }
-//         else if (results === "lose") {
-//             computerWins++;
-//             console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
-//         }
-//         else {
-//             ties++;
-//             console.log(`It's a tie! You both chose ${playerSelection}`);
-//         }
-//     }
+        if (results === 'win') {
+            playerWins++;
+            console.log(`You win!`);
+        }
+        else if (results === "lose") {
+            computerWins++;
+            console.log(`You lose!`);
+        }
+        else {
+            ties++;
+            console.log(`It's a tie!`);
+        }
+    }
 
-//     decideWinner();
-// }
+    decideWinner();
+}
 
 /**
  * Plays a round of rock, paper, scissors.
@@ -71,13 +82,13 @@ function getComputerChoice() {
  */
 function decideWinner() {
     if (playerWins > computerWins) {
-        return console.log("You win!");
+        roundStatus.textContent = 'You win!';
     }
     else if (computerWins > playerWins) {
-        return console.log("You lose :(");
+        roundStatus.textContent = 'You lose :(';
     }
     else {
-        return console.log("It's a tie.");
+        roundStatus.textContent = 'It is a tie.';
     }
 }
 
