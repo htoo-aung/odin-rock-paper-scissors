@@ -9,31 +9,31 @@ const roundStatus = document.querySelector('#round-status');
 const playerChoice = document.querySelector('#player-choice');
 const computerChoice = document.querySelector('#comp-choice');
 
+const results = userChoiceBtns.forEach((button) => {
+    button.addEventListener("click", () => {
+        const pChoice = button.textContent.toLowerCase();
+
+        playerChoice.textContent = button.textContent;
+
+        return playRound(pChoice, getComputerChoice());
+    });
+});
+
 /**
  * Plays a game of rock, paper, scissors.
  */
 function playGame() {
-    for (let i = 0; i < 5; i++) {
-        let results = userChoiceBtns.forEach((button) => {
-            button.addEventListener("click", () => {
-                const pChoice = button.textContent.toLowerCase();
-        
-                return playRound(pChoice, getComputerChoice());
-            });
-        });
-
-        if (results === 'win') {
-            playerWins++;
-            console.log(`You win!`);
-        }
-        else if (results === "lose") {
-            computerWins++;
-            console.log(`You lose!`);
-        }
-        else {
-            ties++;
-            console.log(`It's a tie!`);
-        }
+    if (results === 'win') {
+        playerWins++;
+        console.log(`You win!`);
+    }
+    else if (results === "lose") {
+        computerWins++;
+        console.log(`You lose!`);
+    }
+    else {
+        ties++;
+        console.log(`It's a tie!`);
     }
 
     decideWinner();
@@ -72,7 +72,10 @@ function playRound(playerSelection, computerSelection) {
 function getComputerChoice() {
     let choice = ["rock", "paper", "scissors"];
 
-    return choice[Math.floor(Math.random() * choice.length)];
+    const cChoice = choice[Math.floor(Math.random() * choice.length)];
+    computerChoice.textContent = cChoice;
+
+    return cChoice;
 }
 
 /**
