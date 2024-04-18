@@ -6,6 +6,7 @@ const userChoiceBtns = document.querySelectorAll('.btn-choice');
 
 const roundOutcome = document.querySelector('#round-outcome');
 const roundStatus = document.querySelector('#round-status');
+const gameOutcome = document.querySelector('#game-outcome')
 const playerChoice = document.querySelector('#player-choice');
 const computerChoice = document.querySelector('#comp-choice');
 
@@ -25,15 +26,12 @@ const results = userChoiceBtns.forEach((button) => {
 function playGame() {
     if (results === 'win') {
         playerWins++;
-        console.log(`You win!`);
     }
     else if (results === "lose") {
         computerWins++;
-        console.log(`You lose!`);
     }
     else {
         ties++;
-        console.log(`It's a tie!`);
     }
 
     decideWinner();
@@ -54,12 +52,15 @@ function playRound(playerSelection, computerSelection) {
     if (pChoice.toLowerCase() === "rock" && cChoice === "scissors" ||
         pChoice.toLowerCase() === "paper" && cChoice === "rock" ||
         pChoice.toLowerCase() === "scissors" && cChoice === "paper") {
-            return "win";
-        }
+        roundOutcome.textContent = `You win! ${playerChoice.textContent} beats ${computerChoice.textContent}`;
+        return "win";
+    }
     else if (pChoice === cChoice) {
+        roundOutcome.textContent = `It's a tie! Both choices are ${playerChoice.textContent}`;
         return "tie";
     }
     else {
+        roundOutcome.textContent = `You lose! ${computerChoice.textContent} beats ${playerChoice.textContent}`;
         return "lose";
     }
 }
@@ -84,14 +85,15 @@ function getComputerChoice() {
  * @returns Console output of string declaring winner. 
  */
 function decideWinner() {
+
     if (playerWins > computerWins) {
-        roundStatus.textContent = 'You win!';
+        gameOutcome.textContent = 'You win!';
     }
     else if (computerWins > playerWins) {
-        roundStatus.textContent = 'You lose :(';
+        gameOutcome.textContent = 'You lose :(';
     }
     else {
-        roundStatus.textContent = 'It is a tie.';
+        gameOutcome.textContent = 'Tie.';
     }
 }
 
