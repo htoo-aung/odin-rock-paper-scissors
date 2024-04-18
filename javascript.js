@@ -5,10 +5,14 @@ let ties = 0;
 const userChoiceBtns = document.querySelectorAll('.btn-choice');
 
 const roundOutcome = document.querySelector('#round-outcome');
-const roundStatus = document.querySelector('#round-status');
+const round = document.querySelector('#round');
 const gameOutcome = document.querySelector('#game-outcome')
+
 const playerChoice = document.querySelector('#player-choice');
+const playerScore = document.querySelector('#player-score');
 const computerChoice = document.querySelector('#comp-choice');
+const computerScore = document.querySelector('#comp-score');
+
 
 const results = userChoiceBtns.forEach((button) => {
     button.addEventListener("click", () => {
@@ -26,12 +30,17 @@ const results = userChoiceBtns.forEach((button) => {
 function playGame() {
     if (results === 'win') {
         playerWins++;
+        roundOutcome.textContent = `You win! ${playerChoice.textContent} beats ${computerChoice.textContent}`;
+        playerScore.textContent = playerWins.toString();
     }
     else if (results === "lose") {
         computerWins++;
+        roundOutcome.textContent = `You lose! ${computerChoice.textContent} beats ${playerChoice.textContent}`;
+        computerScore.textContent = computerWins.toString();
     }
     else {
         ties++;
+        roundOutcome.textContent = `It's a tie! Both choices are ${playerChoice.textContent}`;
     }
 
     decideWinner();
@@ -45,22 +54,19 @@ function playGame() {
  * @returns String value indicating a "win", "lose", or "tie".
  */
 function playRound(playerSelection, computerSelection) {
-    let pChoice = playerSelection;
+    let pChoice = playerSelection.toLowerCase();
     let cChoice = computerSelection;
 
     // Check to see the outcome
-    if (pChoice.toLowerCase() === "rock" && cChoice === "scissors" ||
-        pChoice.toLowerCase() === "paper" && cChoice === "rock" ||
-        pChoice.toLowerCase() === "scissors" && cChoice === "paper") {
-        roundOutcome.textContent = `You win! ${playerChoice.textContent} beats ${computerChoice.textContent}`;
+    if (pChoice === "rock" && cChoice === "scissors" ||
+        pChoice === "paper" && cChoice === "rock" ||
+        pChoice === "scissors" && cChoice === "paper") {
         return "win";
     }
     else if (pChoice === cChoice) {
-        roundOutcome.textContent = `It's a tie! Both choices are ${playerChoice.textContent}`;
         return "tie";
     }
     else {
-        roundOutcome.textContent = `You lose! ${computerChoice.textContent} beats ${playerChoice.textContent}`;
         return "lose";
     }
 }
@@ -74,7 +80,7 @@ function getComputerChoice() {
     let choice = ["rock", "paper", "scissors"];
 
     const cChoice = choice[Math.floor(Math.random() * choice.length)];
-    computerChoice.textContent = cChoice;
+    computerChoice.textContent = cChoice.charAt(0).toUpperCase() + cChoice.slice(1);
 
     return cChoice;
 }
