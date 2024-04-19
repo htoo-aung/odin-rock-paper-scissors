@@ -97,19 +97,25 @@ function getComputerChoice() {
  * @returns Console output of string declaring winner. 
  */
 function decideWinner() {
-
     if (roundsPlayed != 5) {
-        gameOutcome.textContent = 'Start';
+        gameOutcome.textContent = 'Round Start!';
     }
     else {
+        gameOutcome.textContent = 'Game over!';
+
+        // Disable buttons
+        userChoiceBtns.forEach((button) => {
+            button.disabled = true;
+        });
+
         if (playerWins > computerWins) {
-            gameOutcome.textContent = 'You win!';
+            roundOutcome.textContent = 'You win!';
         }
         else if (computerWins > playerWins) {
-            gameOutcome.textContent = 'You lose :(';
+            roundOutcome.textContent = 'You lose :(';
         }
         else {
-            gameOutcome.textContent = 'Tie.';
+            roundOutcome.textContent = 'Tie.';
         }
     }
 }
