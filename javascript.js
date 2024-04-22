@@ -6,6 +6,7 @@ let computerWins = 0;
 let ties = 0;
 
 const userChoiceBtns = document.querySelectorAll('.btn-choice');
+const resetBtn = document.querySelector('#btn-reset');
 
 // Round status
 const roundOutcome = document.querySelector('#round-outcome');
@@ -23,7 +24,9 @@ const computerScore = document.querySelector('#comp-score');
 
 
 userChoiceBtns.forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener('click', () => {
+        resetBtn.disabled = true;
+
         const pChoice = button.textContent.toLowerCase();
         roundsPlayed++;
 
@@ -34,6 +37,10 @@ userChoiceBtns.forEach((button) => {
 
         playGame(results);
     });
+});
+
+resetBtn.addEventListener('click', () => {
+    reset();
 });
 
 /**
@@ -108,9 +115,11 @@ function getComputerChoice() {
 function decideWinner() {
     if (roundsPlayed != 7) {
         gameOutcome.textContent = 'Round Start!';
+        resetBtn.disabled = true;
     }
     else {
         gameOutcome.textContent = 'Game over!';
+        resetBtn.disabled = false;
 
         // Disable buttons
         userChoiceBtns.forEach((button) => {
@@ -131,4 +140,28 @@ function decideWinner() {
             roundOutcome.textContent = 'Tie.';
         }
     }
+}
+
+/**
+ * Prepares the next match.
+ */
+function reset() {
+
+    roundsPlayed = 0;
+    playerWins = 0;
+    computerWins = 0;
+
+    roundOutcome.textContent = "Match Start!";
+    round.textContent = "Round 0";
+    gameOutcome.textContent = "Round Start!";
+
+    playerChoice.textContent = "";
+    playerScore.textContent = "0";
+
+    computerChoice.textContent = "";
+    computerScore.textContent = "0";
+
+    userChoiceBtns.forEach((button) => {
+        button.disabled = false;
+    });
 }

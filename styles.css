@@ -5,13 +5,17 @@ body {
     background-color: #000000;
 }
 
+button {
+    background-color: #00FF00;
+}
+
 .container {
     display: flex;
     justify-content: space-evenly;   
 }
 
-.btn-choice {
-    background-color: #00FF00;
+.header-text {
+    text-align: center;
 }
 
 .global-score {
@@ -37,6 +41,7 @@ body {
     justify-content: space-between;
     width: 50%;
     height: 35%;
+    gap: 10px;
 }
 
 #game-header {
@@ -50,6 +55,6 @@ body {
     justify-content: space-evenly;
 }
 
-.header-text {
-    text-align: center;
+#btn-reset {
+    width: 80px;
 }
