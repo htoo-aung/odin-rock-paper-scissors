@@ -6,21 +6,21 @@ let computerWins = 0;
 let ties = 0;
 
 const userChoiceBtns = document.querySelectorAll('.btn-choice');
-const resetBtn = document.querySelector('#btn-reset');
+const resetBtn = document.getElementById('btn-reset');
 
 // Round status
-const roundOutcome = document.querySelector('#round-outcome');
-const round = document.querySelector('#round');
-const gameOutcome = document.querySelector('#game-outcome')
+const roundOutcome = document.getElementById('round-outcome');
+const round = document.getElementById('round');
+const gameOutcome = document.getElementById('game-outcome')
 
 // Stats display
-const playerChoice = document.querySelector('#player-choice');
-const playerGlobalScore = document.querySelector('#global-player-score');
-const playerScore = document.querySelector('#player-score');
+const playerChoice = document.getElementById('player-choice');
+const playerGlobalScore = document.getElementById('global-player-score');
+const playerScore = document.getElementById('player-score');
 
-const computerChoice = document.querySelector('#comp-choice');
-const computerGlobalScore = document.querySelector('#global-computer-score');
-const computerScore = document.querySelector('#comp-score');
+const computerChoice = document.getElementById('comp-choice');
+const computerGlobalScore = document.getElementById('global-computer-score');
+const computerScore = document.getElementById('comp-score');
 
 
 userChoiceBtns.forEach((button) => {
@@ -151,7 +151,11 @@ function reset() {
     playerWins = 0;
     computerWins = 0;
 
+    const newLine = document.createElement('br');
+
     roundOutcome.textContent = "";
+    roundOutcome.appendChild(newLine);
+
     round.textContent = "Round 0";
     gameOutcome.textContent = "Round Start!";
 
