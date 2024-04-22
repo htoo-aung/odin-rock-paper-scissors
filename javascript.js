@@ -151,7 +151,7 @@ function reset() {
     playerWins = 0;
     computerWins = 0;
 
-    roundOutcome.textContent = "Match Start!";
+    roundOutcome.textContent = "";
     round.textContent = "Round 0";
     gameOutcome.textContent = "Round Start!";
 
