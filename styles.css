@@ -1,11 +1,21 @@
 body {
     height: 100vh;
     margin: 0;
+    color: #FFFFFF;
+    background-color: #000000;
 }
 
 .container {
     display: flex;
-    justify-content: space-around;   
+    justify-content: space-evenly;   
+}
+
+.btn-choice {
+    background-color: #00FF00;
+}
+
+.global-score {
+    font-size: 30px;
 }
 
 #wrapper {
@@ -14,6 +24,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#global-score-container {
+    display: flex;
+    justify-content: space-between;
 }
 
 #game-container {
@@ -32,7 +47,7 @@ body {
 
 #game-stats {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .header-text {

@@ -1,18 +1,24 @@
 let roundsPlayed = 0;
+let playerGlobalWins = 0;
+let computerGlobalWins = 0;
 let playerWins = 0;
 let computerWins = 0;
 let ties = 0;
 
 const userChoiceBtns = document.querySelectorAll('.btn-choice');
 
+// Round status
 const roundOutcome = document.querySelector('#round-outcome');
 const round = document.querySelector('#round');
 const gameOutcome = document.querySelector('#game-outcome')
 
-// Stat display
+// Stats display
 const playerChoice = document.querySelector('#player-choice');
+const playerGlobalScore = document.querySelector('#global-player-score');
 const playerScore = document.querySelector('#player-score');
+
 const computerChoice = document.querySelector('#comp-choice');
+const computerGlobalScore = document.querySelector('#global-computer-score');
 const computerScore = document.querySelector('#comp-score');
 
 
@@ -34,19 +40,22 @@ userChoiceBtns.forEach((button) => {
  * Plays a game of rock, paper, scissors.
  */
 function playGame(results) {
+    const pChoice = playerChoice.textContent;
+    const cChoice = computerChoice.textContent;
+
     if (results === 'win') {
         playerWins++;
-        roundOutcome.textContent = `You win! ${playerChoice.textContent} beats ${computerChoice.textContent}`;
+        roundOutcome.textContent = `You win! ${pChoice} beats ${cChoice}`;
         playerScore.textContent = playerWins.toString();
     }
     else if (results === "lose") {
         computerWins++;
-        roundOutcome.textContent = `You lose! ${computerChoice.textContent} beats ${playerChoice.textContent}`;
+        roundOutcome.textContent = `You lose! ${cChoice} beats ${pChoice}`;
         computerScore.textContent = computerWins.toString();
     }
     else {
         ties++;
-        roundOutcome.textContent = `It's a tie! Both choices are ${playerChoice.textContent}`;
+        roundOutcome.textContent = `It's a tie! Both choices are ${pChoice}`;
     }
 
     decideWinner();
@@ -97,7 +106,7 @@ function getComputerChoice() {
  * @returns Console output of string declaring winner. 
  */
 function decideWinner() {
-    if (roundsPlayed != 5) {
+    if (roundsPlayed != 7) {
         gameOutcome.textContent = 'Round Start!';
     }
     else {
@@ -110,9 +119,13 @@ function decideWinner() {
 
         if (playerWins > computerWins) {
             roundOutcome.textContent = 'You win!';
+            playerGlobalWins++;
+            playerGlobalScore.textContent = playerGlobalWins;
         }
         else if (computerWins > playerWins) {
             roundOutcome.textContent = 'You lose :(';
+            computerGlobalWins++;
+            computerGlobalScore.textContent = computerGlobalWins;
         }
         else {
             roundOutcome.textContent = 'Tie.';
