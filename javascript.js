@@ -31,7 +31,7 @@ userChoiceBtns.forEach((button) => {
         roundsPlayed++;
 
         playerChoice.textContent = button.textContent;
-        round.textContent = roundsPlayed.toString();
+        round.textContent = `Round ${roundsPlayed}`;
 
         const results = playRound(pChoice, getComputerChoice());
 
