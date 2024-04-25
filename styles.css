@@ -19,7 +19,8 @@ button {
 
 .container {
     display: flex;
-    justify-content: space-evenly;   
+    justify-content: space-evenly;
+    margin: 10px;
 }
 
 .header-text {
